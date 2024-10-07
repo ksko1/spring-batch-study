@@ -1,0 +1,26 @@
+# H2 DataBase?
+spring:
+  # H2 Setting Info (H2 Console? ???? ?? ???? ??)
+  h2:
+    console:
+      enabled: true  # H2 Console? ???? ?? (H2 Console? H2 Database? UI? ????? ??)
+      path: /h2-console  # H2 Console? Path
+  # Database Setting Info (Database? H2? ???? ?? H2?? ?? ??)
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      username: sa # H2 ?? ? ??? username ?? (??? ??? ??)
+      password: password
+    url: jdbc:h2:mem:testdb # H2 ?? ??
+    driver-class-name: org.h2.Driver # Database? H2? ?????.
+  # batch metatable create 
+  batch:
+    jdbc:
+      initialize-schema: always
+    # sql
+    #url: jdbc:hsqldb:mem:testdb
+    #driver-class-name: org.hsqldb.jdbc.JDBCDriver
+
+    #apache derby
+    #url: jdbc:derby:memory:testdb;create=true
+    #driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
