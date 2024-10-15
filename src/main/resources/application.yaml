@@ -1,19 +1,19 @@
-# H2 DataBase?
+# H2 DataBase
 spring:
-  # H2 Setting Info (H2 Console? ???? ?? ???? ??)
+  # H2 Setting Info
   h2:
     console:
-      enabled: true  # H2 Console? ???? ?? (H2 Console? H2 Database? UI? ????? ??)
-      path: /h2-console  # H2 Console? Path
-  # Database Setting Info (Database? H2? ???? ?? H2?? ?? ??)
+      enabled: true  # H2 Console
+      path: /h2-console  # H2 Console Path
+  # Database Setting Inf
   datasource:
     hikari:
       maximum-pool-size: 10
-      username: sa # H2 ?? ? ??? username ?? (??? ??? ??)
+      username: sa
       password: password
-    url: jdbc:h2:mem:testdb # H2 ?? ??
-    driver-class-name: org.h2.Driver # Database? H2? ?????.
-  # batch metatable create 
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  # batch meta-table create
   batch:
     jdbc:
       initialize-schema: always
