@@ -11,7 +11,14 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
+
+	//241112 로컬내 jdk 버전 차이이슈로 미실행되는 현상 수정
+	sourceCompatibility = '21'  // JDK 21로 설정
+	targetCompatibility = '21'
+
 }
+
+
 
 repositories {
 	mavenCentral()
@@ -25,10 +32,13 @@ dependencies {
 	//h2 db console connect
 	//implementation 'org.springframework.boot:spring-boot-starter-web'
 	//db
-	implementation 'com.h2database:h2:2.2.224' //h2
+	//implementation 'com.h2database:h2:2.2.224' //h2
 	//implementation 'org.hsqldb:hsqldb:2.7.2' //hsql
 	//implementation 'org.apache.derby:derby:10.17.1.0' //apache derby
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+ 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.projectlombok:lombok:1.18.24' //lombok
+	annotationProcessor 'org.projectlombok:lombok:1.18.24' //lombok
 }
 
 tasks.named('test') {

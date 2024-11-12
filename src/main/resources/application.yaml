@@ -1,22 +1,32 @@
-# H2 DataBase
+
 spring:
-  # H2 Setting Info
-  h2:
-    console:
-      enabled: true  # H2 Console
-      path: /h2-console  # H2 Console Path
-  # Database Setting Inf
   datasource:
-    hikari:
-      maximum-pool-size: 10
-      username: sa
-      password: password
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-  # batch meta-table create
+# mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://test
+    username: test
+    password: test
   batch:
-    jdbc:
-      initialize-schema: always
+    job:
+      name: JDBC_BATCH_WRITER_CHUNK_JOB
+    # H2 DataBase
+  # H2 Setting Info
+  #h2:
+  #  console:
+  #    enabled: true  # H2 Console
+  #    path: /h2-console  # H2 Console Path
+  # Database Setting Inf
+  #datasource:
+  #  hikari:
+  #    maximum-pool-size: 10
+  #    username: sa
+  #    password: password
+  #  url: jdbc:h2:mem:testdb
+  #  driver-class-name: org.h2.Driver
+  # batch meta-table create
+  #batch:
+  #  jdbc:
+  #    initialize-schema: always
     # sql
     #url: jdbc:hsqldb:mem:testdb
     #driver-class-name: org.hsqldb.jdbc.JDBCDriver
@@ -24,3 +34,5 @@ spring:
     #apache derby
     #url: jdbc:derby:memory:testdb;create=true
     #driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+
+
