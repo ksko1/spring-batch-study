@@ -3,12 +3,12 @@ spring:
   datasource:
 # mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://test
+    url: jdbc:mysql://TEST
     username: test
     password: test
   batch:
     job:
-      name: JDBC_BATCH_WRITER_CHUNK_JOB
+      name: MY_BATIS_ITEM_WRITER # 실행 job 명 셋팅 MYBATIS_CHUNK_JOB, MY_BATIS_ITEM_WRITER
     # H2 DataBase
   # H2 Setting Info
   #h2:

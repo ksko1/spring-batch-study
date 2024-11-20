@@ -28,13 +28,13 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
 @Slf4j
 @Configuration
 public class JdbcPagingReaderJobConfig {
 
-    /**
-     * CHUNK 크기를 지정한다.
-     */
+    //CHUNK 크기를 지정한다.
+
     public static final int CHUNK_SIZE = 2;
     public static final String ENCODING = "UTF-8";
     public static final String JDBC_PAGING_CHUNK_JOB = "JDBC_PAGING_CHUNK_JOB";
@@ -107,4 +107,4 @@ public class JdbcPagingReaderJobConfig {
                 .build();
     }
 
-}
+}*/

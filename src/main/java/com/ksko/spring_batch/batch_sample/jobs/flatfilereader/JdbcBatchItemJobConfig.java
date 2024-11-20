@@ -19,14 +19,14 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
+/*
 
 @Slf4j
 @Configuration
 public class JdbcBatchItemJobConfig {
 
-    /**
-     * CHUNK 크기를 지정한다.
-     */
+
+    //CHUNK 크기를 지정한다.
     public static final int CHUNK_SIZE = 100;
     public static final String ENCODING = "UTF-8";
     public static final String JDBC_BATCH_WRITER_CHUNK_JOB = "JDBC_BATCH_WRITER_CHUNK_JOB";
@@ -76,3 +76,4 @@ public class JdbcBatchItemJobConfig {
     }
 
 }
+*/
