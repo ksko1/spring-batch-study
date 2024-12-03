@@ -13,6 +13,8 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
+import org.springframework.batch.item.support.CompositeItemProcessor;
+import org.springframework.batch.item.support.builder.CompositeItemProcessorBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,16 +22,15 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-/*
+import java.util.List;
 
 @Slf4j
 @Configuration
 public class MyBatisReaderJobConfig {
 
-    */
-/**
+    /**
      * CHUNK 크기를 지정한다.
-     *//*
+     */
 
     public static final int CHUNK_SIZE = 2;
     public static final String ENCODING = "UTF-8";
@@ -60,6 +61,17 @@ public class MyBatisReaderJobConfig {
                 .build();
     }
 
+    //CompositeItemProcessor 구현
+    @Bean
+    public CompositeItemProcessor<Customer, Customer> compositeItemProcessor() {
+        return new CompositeItemProcessorBuilder<Customer, Customer>()
+                .delegates(List.of( // delegate 역할 : 1.ItemProcessor 체이닝, 2. 순서대로 처리, 3.데이터 변환 및 필터링, 4.유연한 처리 로직, 5. 코드 재사용성
+                        new LowerCaseItemProcessor(),
+                        new After20YearsItemProcessor()
+                ))
+                .build();
+    }
+
     @Bean
     public Step customerJdbcCursorStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) throws Exception {
         log.info("------------------ Init customerJdbcCursorStep -----------------");
@@ -67,8 +79,10 @@ public class MyBatisReaderJobConfig {
         return new StepBuilder("customerJdbcCursorStep", jobRepository)
                 .<Customer, Customer> chunk(CHUNK_SIZE, transactionManager)
                 .reader(myBatisItemReader())
-                .processor(new CustomerItemProcessor())
-                .writer(customerCursorFlatFileItemWriter())
+                //.processor(new CustomerItemProcessor())
+                .processor(compositeItemProcessor()) // compositeItemProcessor 셋팅, 기존 커스텀 아이템 프로세서 주석
+                .writer(items -> items.forEach(System.out::println)) // 결과 로그 찍기위한 셋팅
+                //.writer(customerCursorFlatFileItemWriter())
                 .build();
     }
 
@@ -81,4 +95,4 @@ public class MyBatisReaderJobConfig {
                 .build();
     }
 }
-*/
+
