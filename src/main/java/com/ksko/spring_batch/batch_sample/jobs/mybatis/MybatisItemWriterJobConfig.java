@@ -38,6 +38,9 @@ public class MybatisItemWriterJobConfig {
     @Autowired
     SqlSessionFactory sqlSessionFactory;
 
+    @Autowired
+    CustomItemWriter customItemWriter;
+
     @Bean
     public FlatFileItemReader<Customer> flatFileItemReader() {
         return new FlatFileItemReaderBuilder<Customer>()
@@ -49,6 +52,7 @@ public class MybatisItemWriterJobConfig {
                 .targetType(Customer.class)
                 .build();
     }
+/*
 
     @Bean
     public MyBatisBatchItemWriter<Customer> myBatisBatchItemWriter() {
@@ -57,6 +61,7 @@ public class MybatisItemWriterJobConfig {
                 .statementId("com.ksko.spring_batch.batch_sample.jobs.insertCustomers") // 실행할 SQL 문의 ID 설정. 여기서는 Customer 삽입 SQL을 가리키는 완전한 경로 지정
                 .build();
     }
+
 
 	//@Bean
     public MyBatisBatchItemWriter<Customer> myBatisBatchItemWriter2() {
@@ -73,6 +78,7 @@ public class MybatisItemWriterJobConfig {
                 })
                 .build();
     }
+*/
 
     @Bean
     public Step flatFileStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
@@ -81,7 +87,8 @@ public class MybatisItemWriterJobConfig {
         return new StepBuilder("flatFileStep", jobRepository)
                 .<Customer, Customer>chunk(CHUNK_SIZE, transactionManager)
                 .reader(flatFileItemReader())
-                .writer(myBatisBatchItemWriter())
+                //.writer(myBatisBatchItemWriter())
+                .writer(customItemWriter)
                 .build();
     }
 

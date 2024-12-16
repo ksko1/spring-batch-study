@@ -32,7 +32,7 @@ public class MyBatisReaderJobConfig {
      * CHUNK 크기를 지정한다.
      */
 
-    public static final int CHUNK_SIZE = 2;
+    /*public static final int CHUNK_SIZE = 2;
     public static final String ENCODING = "UTF-8";
     public static final String MYBATIS_CHUNK_JOB = "MYBATIS_CHUNK_JOB";
 
@@ -93,6 +93,6 @@ public class MyBatisReaderJobConfig {
                 .incrementer(new RunIdIncrementer())
                 .start(customerJdbcCursorStep)
                 .build();
-    }
+    }*/
 }
 
