@@ -8,7 +8,7 @@ spring:
     password: test
   batch:
     job:
-      name: MY_BATIS_ITEM_WRITER # 실행 job 명 셋팅 MYBATIS_CHUNK_JOB, MY_BATIS_ITEM_WRITER
+      name: STOP_STEP_TASK # 실행 job 명 셋팅 MYBATIS_CHUNK_JOB, MY_BATIS_ITEM_WRITER, 9장 QUERYDSL_PAGING_CHUNK_JOB, MY_BATIS_ITEM_WRITER, 10장 NEXT_STEP_TASK, ON_STEP_TASK, STOP_STEP_TASK
     # H2 DataBase
   # H2 Setting Info
   #h2:
